@@ -54,6 +54,7 @@ def main():
 
         message = CreateMessage(sender, receiver, subject, message_text)
         SendMessage(service, 'me', message)
-
+    else:
+        print('Couldn\'t find any product with these keywords')
 if __name__ == '__main__':
     main()
