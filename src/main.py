@@ -8,9 +8,7 @@ from ccbot import *
 from messages import *
 
 # If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly',
-          'https://www.googleapis.com/auth/gmail.compose',
-          'https://www.googleapis.com/auth/gmail.send']
+SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 
 keywords = ['p45', 'p-45','p125','p-125','ypt-230', 'xd9']
 min_price = 120
@@ -56,6 +54,6 @@ def main():
         SendMessage(service, 'me', message)
     else:
         print('Couldn\'t find any product with these keywords')
-        
+
 if __name__ == '__main__':
     main()
