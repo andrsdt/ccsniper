@@ -4,12 +4,12 @@ from messages import CreateMessage, SendMessage
 from gmail import gmailAPIsetup
 
 keywords = ['p45', 'p125', 'cdps100', 'casio', 'korg b2', 'es110', 'px160']
-precio_minimo = 70
-precio_maximo = 400
-mail_sender = 'andres321duran@gmail.com'
-mail_receiver = 'kokato99@gmail.com'
-urls = [f"https://www.cashconverters.es/es/es/comprar/informatica/tablet/pc/?pmin={precio_minimo}&pmax={precio_maximo}&srule=new&view=all",
-        f"https://www.cashconverters.es/es/es/comprar/instrumentos-musicales/pianos-y-organos/piano/?pmin={precio_minimo}&pmax={precio_maximo}&srule=new&view=all"]
+min_price = 70
+max_price = 400
+mail_sender = 'mail_sender_gmail'
+mail_receiver = 'mail_receiver_mail'
+urls = [f"https://www.cashconverters.es/es/es/comprar/informatica/tablet/pc/?pmin={min_price}&pmax={max_price}&srule=new&view=all",
+        f"https://www.cashconverters.es/es/es/comprar/instrumentos-musicales/pianos-y-organos/piano/?pmin={min_price}&pmax={max_price}&srule=new&view=all"]
 
 def main():
     for url in urls: # urls == lista
