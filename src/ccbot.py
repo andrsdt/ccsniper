@@ -1,8 +1,6 @@
-import requests
-import json
-import messages
 from bs4 import BeautifulSoup as soup
-
+import json
+import requests
 
 
 def fetchProduct(url,keywords):
@@ -14,22 +12,23 @@ def fetchProduct(url,keywords):
         print('The http request couldn\'t be processed.')
 
     html_soup = soup(response.text, 'html.parser')
-    product_frames = html_soup.find_all('div', class_ = 'col-sm-6 col-lg-4 col-xl-3')
-    products = [p.find_all('div', class_ = 'box-product tiles-container')[0] for p in product_frames]
+    product_frames = html_soup.find_all('div', class_ = 'col-6 col-sm-6 col-md-4 col-lg-3 col-xl-4')
+    products = [json.loads(p.find_all('div', class_ = 'product-tiles tiles-container redirect-link')[0].find('a')['data-dl']) for p in product_frames]
 
-    products_dicc = {json.loads(p.a['data-dl'])['name']:
-                    [
-                    json.loads(p.a['data-dl'])['price'],
-                    json.loads(p.a['data-dl'])['url']] for p in products}
+    
+    products_dicc = {p['name']:[p['price'],p['url']] for p in products}
 
     for p in products_dicc:
         for k in keywords:
-            if k.lower() in p.lower():
+            a =  k.lower().replace('-','')
+            b = p.lower().replace('-','')
+
+            if k.lower().replace('-','') in p.lower().replace('-',''):
                 name = p
                 found = True
                 price = f'{products_dicc[p][0]}€'
                 matching_keyword = k
                 final_url = f'https://www.cashconverters.es{products_dicc[p][1]}'
+                break
     
-    return [found,name,price,final_url,matching_keyword]
-
+    return [found,name,price,final_url,matching_keyword] if found else None

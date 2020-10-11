@@ -33,8 +33,8 @@ def SendMessage(service, user_id, message):
   """
   try:
     message = (service.users().messages().send(userId=user_id, body=message)
-               .execute())
+                .execute())
     print ('Message Id: %s' % message['id'])
     return message
   except:
-    print (f'An error occurred')
+    print("An error occurred")
